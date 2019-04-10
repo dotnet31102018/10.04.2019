@@ -28,6 +28,6 @@ UPDATE Class SET AGE_AVERAGE = (SELECT avg (AGE) FROM Students WHERE Students.Cl
 
 UPDATE Class SET MOST_POPULAR_CITY = (SELECT max (ADDRESS_CITY) FROM Students WHERE Students.Class_ID = Class.ID);
 
-UPDATE Class SET OLDEST_VIP = (SELECT max (AGE) FROM Students WHERE Students.Class_ID = Class.ID);
+UPDATE Class SET OLDEST_VIP = (SELECT max (AGE) FROM Students WHERE Students.Class_ID = Class.ID AND Students.VIP='yes');
 
-UPDATE Class SET YOUNGEST_VIP = (SELECT min (AGE) FROM Students WHERE Students.Class_ID = Class.ID);
+UPDATE Class SET YOUNGEST_VIP = (SELECT min (AGE) FROM Students WHERE Students.Class_ID = Class.ID AND Students.VIP='yes');
