@@ -26,7 +26,7 @@ UPDATE Class SET NUMBER_OF_VIP = (SELECT count (Class_ID) FROM Students WHERE St
 
 UPDATE Class SET AGE_AVERAGE = (SELECT avg (AGE) FROM Students WHERE Students.Class_ID = Class.ID);
 
-UPDATE Class SET MOST_POPULAR_CITY = (SELECT max (ADDRESS_CITY) FROM Students WHERE Students.Class_ID = Class.ID);
+UPDATE Class SET MOST_POPULAR_CITY = (SELECT ADDRESS_CITY from (SELECT ADDRESS_CITY, max(noc) from (SELECT *, ADDRESS_CITY, count(*) as noc from Students group by ADDRESS_CITY having Students.Class_ID=Class.ID))) 
 
 UPDATE Class SET OLDEST_VIP = (SELECT max (AGE) FROM Students WHERE Students.Class_ID = Class.ID AND Students.VIP='yes');
 
